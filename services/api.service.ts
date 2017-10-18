@@ -7,7 +7,7 @@ export class ApiService {
     private apiUrl: string;
     private token: any;
     public authenticated = false;
-
+//comment test
     public constructor(public http: Http) {
         if (location.host.toLowerCase().startsWith('localhost')) {
             this.apiUrl = 'http://localhost/penoc2/api';
