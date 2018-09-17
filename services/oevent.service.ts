@@ -34,4 +34,11 @@ export class OEventService {
             this.apiService.post('/OEvents/', JSON.stringify(oevent))
         );
     }
+
+    getOEventResultSummary(oeventId: Number){
+        let url = '/OEvents/' + oeventId + '/resultSummary';
+       return Promise.resolve(
+               this.apiService.get(url)
+       );
+    }
 }
