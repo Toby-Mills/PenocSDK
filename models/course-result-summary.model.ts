@@ -1,16 +1,8 @@
 import { ResultModel } from './result.model';
+import { CourseModel } from './course.model';
 
 export class CourseResultSummaryModel 
 {
-    id: number;
-    eventId: number;
-    name: string;
-    venueId: number;
-    length: number;
-    climb: number;
-    controls: number;
-    difficultyId: number;
-    difficulty: string;
-    listOrder: number;
+    course: CourseModel;
     topResults: ResultModel[];
 } 
