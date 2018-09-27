@@ -1,6 +1,11 @@
 {
   "name": "penoc-sdk",
   "version": "0.1.0",
-  "devDependencies": {
-  }
+  "dependencies": {
+    "@angular/common": "~4.0.0",
+    "@angular/compiler": "~4.0.0",
+    "@angular/core": "~4.0.0",
+    "@angular/http": "~4.0.0"
+  },
+  "devDependencies": {}
 }
