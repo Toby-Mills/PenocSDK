@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/Rx';
+import { Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { CourseModel } from '../models/course.model';
 import { ApiService } from '../services/api.service';
 
@@ -10,33 +11,23 @@ export class CourseService {
     constructor( private apiService: ApiService) {
      }
 
-    getCourse(idCourse: Number) {
-        return Promise.resolve(
-            this.apiService.get('/Courses/' + idCourse)
-        );
+    getCourse(idCourse: Number): Observable<Response> {
+        return this.apiService.get('/Courses/' + idCourse)
     }
 
-    getEventCourses(idOEvent: Number) {
-        return Promise.resolve(
-            this.apiService.get('/Oevents/' + idOEvent + '/Courses')
-        );
+    getEventCourses(idOEvent: Number): Observable<Response> {
+        return this.apiService.get('/Oevents/' + idOEvent + '/Courses')
     }
 
-    putCourse(course: CourseModel) {
-        return Promise.resolve(
-           this.apiService.put('/Courses/', JSON.stringify(course))
-        );
+    putCourse(course: CourseModel): Observable<Response> {
+        return this.apiService.put('/Courses/', JSON.stringify(course))
     }
 
-    postCourse(course: CourseModel) {
-        return Promise.resolve(
-            this.apiService.post('/Courses/', JSON.stringify(course))
-        );
+    postCourse(course: CourseModel): Observable<Response> {
+        return this.apiService.post('/Courses/', JSON.stringify(course))
     }
 
-    deleteCourse(courseId: Number) {
-        return Promise.resolve(
-            this.apiService.delete('/Courses/' + courseId)
-        );
+    deleteCourse(courseId: Number): Observable<Response> {
+        return this.apiService.delete('/Courses/' + courseId)
     }
 }

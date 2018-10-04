@@ -13,14 +13,12 @@ export class CompetitorService {
         this.getAllCompetitors();
     }
 
-    getCompetitor(competitorId?: Number, name?: String) {
+    getCompetitor(competitorId?: Number, name?: String): Observable<Response> {
         let  url = '/Competitors?';
         if (competitorId != null) { url += 'idCompetitor=' + competitorId; }
         if (name != null) { url += '&name=' + name; }
 
-        return Promise.resolve(
-            this.apiService.get(url)
-        );
+        return this.apiService.get(url)
     }
 
     getAllCompetitors(): void {
@@ -40,16 +38,14 @@ export class CompetitorService {
         ));
     }
 
-    getIndividual(name?: String) {
+    getIndividual(name?: String): Observable<Response> {
         let url = '/Competitors/Individuals?';
         if (name != null) { url += '&name=' + name; }
 
-        return Promise.resolve(
-            this.apiService.get(url)
-        );
+        return  this.apiService.get(url)
     }
 
-    putCompetitor(competitor: CompetitorModel) {
+    putCompetitor(competitor: CompetitorModel): Observable<Response> {
         return this.apiService.put('/Competitors/', JSON.stringify(competitor));
     }
 

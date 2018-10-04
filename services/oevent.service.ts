@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/Rx';
+import { Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import {OEventModel} from '../models/oevent.model';
 import { ApiService } from '../services/api.service';
 
@@ -9,7 +10,7 @@ export class OEventService {
     constructor( private apiService: ApiService) {
      }
 
-    getOEvent(oeventId?: Number, name?: String, venue?: String, dateFrom?: Date, dateTo?: Date) {
+    getOEvent(oeventId?: Number, name?: String, venue?: String, dateFrom?: Date, dateTo?: Date): Observable<Response> {
 
          let url = '/OEvents?';
          if (oeventId != null) {url += 'id=' + oeventId; }
@@ -18,27 +19,19 @@ export class OEventService {
          if (dateFrom != null) {url += '&dateFrom=' + dateFrom.getFullYear() + '-' + (dateFrom.getMonth() + 1) + '-' + dateFrom.getDate(); }
          if (dateTo != null) {url += '&dateTo=' + dateTo.getFullYear() + '-' + (dateTo.getMonth() + 1) + '-' + dateTo.getDate(); }
 
-        return Promise.resolve(
-                this.apiService.get(url)
-        );
+        return this.apiService.get(url);
     }
 
-    putOEvent(oevent: OEventModel) {
-        return Promise.resolve(
-           this.apiService.put('/OEvents/', JSON.stringify(oevent))
-        );
+    putOEvent(oevent: OEventModel): Observable<Response> {
+        return this.apiService.put('/OEvents/', JSON.stringify(oevent));
     }
 
-    postOEvent(oevent: OEventModel) {
-        return Promise.resolve(
-            this.apiService.post('/OEvents/', JSON.stringify(oevent))
-        );
+    postOEvent(oevent: OEventModel): Observable<Response> {
+        return  this.apiService.post('/OEvents/', JSON.stringify(oevent));
     }
 
-    getOEventResultSummary(oeventId: Number){
+    getOEventResultSummary(oeventId: Number): Observable<Response>{
         let url = '/OEvents/' + oeventId + '/resultSummary';
-       return Promise.resolve(
-               this.apiService.get(url)
-       );
+       return this.apiService.get(url);
     }
 }

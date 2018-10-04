@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import 'rxjs/Rx';
+import { Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ApiService } from '../services/api.service';
 import { ClubModel } from '../models/club.model';
