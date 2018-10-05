@@ -52,15 +52,38 @@ export class ApiService {
 
     public signIn(userName: String, password: String): Observable<boolean> {
 
-          return this.post('/authenticate', {username: userName, password: password}).subscribe(response => {
-              if (response.status === 200) {
-                  this.token = response.json(); this.authenticated = true;
-                } else {
-                    this.token = undefined; this.authenticated = false;
-                }
+        let post = this.post('/authenticate', {username: userName, password: password});
 
-                return this.authenticated;
-            });
+        post.subscribe(
+            response => {
+                if (response.status === 200) {
+                    this.token = response.json()
+                    this.authenticated = true;
+                } else {
+                    this.token = null;
+                    this.authenticated = false;
+                }
+            },
+            error=>{
+                this.token = null;
+                this.authenticated = false;
+            }
+        );
+
+        let authenticated = Observable.create(observer => {
+            post.subscribe(response => {
+                if (response.status === 200) {
+                    observer.next(true);
+                } else {
+                    observer.next(false);
+                }
+            },
+            error => {
+                observer.next(false);
+            })
+        });
+
+        return authenticated
     }
 
     public signOut() {
