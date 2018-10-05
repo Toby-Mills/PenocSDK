@@ -22,20 +22,18 @@ export class CompetitorService {
     }
 
     getAllCompetitors(): void {
-        this.getCompetitor().then(data => data.subscribe(
-            competitorData => {
-                let competitors: Array<CompetitorModel>;
-                competitors = competitorData.json();
-                competitors.sort((a, b) => {
-                    if (a.genderId === 3 && b.genderId !== 3) {return 1; }
-                    if (a.genderId !== 3 && b.genderId === 3) {return -1; }
-                    if (a.fullName.toLowerCase() < b.fullName.toLowerCase()) {return -1; }
-                    if (a.fullName.toLowerCase() === b.fullName.toLowerCase()) {return 0; }
-                    if (a.fullName.toLowerCase() > b.fullName.toLowerCase()) {return 1; }
-                });
-                this.allCompetitors.next(competitors);
-            }
-        ));
+        this.getCompetitor().subscribe(competitorData => {
+            let competitors: Array<CompetitorModel>;
+            competitors = competitorData.json();
+            competitors.sort((a, b) => {
+                if (a.genderId === 3 && b.genderId !== 3) {return 1; }
+                if (a.genderId !== 3 && b.genderId === 3) {return -1; }
+                if (a.fullName.toLowerCase() < b.fullName.toLowerCase()) {return -1; }
+                if (a.fullName.toLowerCase() === b.fullName.toLowerCase()) {return 0; }
+                if (a.fullName.toLowerCase() > b.fullName.toLowerCase()) {return 1; }
+            });
+            this.allCompetitors.next(competitors);
+        });
     }
 
     getIndividual(name?: String): Observable<Response> {

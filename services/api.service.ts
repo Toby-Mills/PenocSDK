@@ -52,7 +52,7 @@ export class ApiService {
 
     public signIn(userName: String, password: String): Observable<boolean> {
 
-          return this.post('/authenticate', {username: userName, password: password}).map(response => {
+          return this.post('/authenticate', {username: userName, password: password}).subscribe(response => {
               if (response.status === 200) {
                   this.token = response.json(); this.authenticated = true;
                 } else {
