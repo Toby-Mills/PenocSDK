@@ -5,9 +5,9 @@ import { ApiService } from '../services/api.service';
 
 @Injectable()
 export class UploadService {
-    constructor(private apiService: ApiService): Observable<Response> {}
+    constructor(private apiService: ApiService){}
 
-    uploadNewsImage(fileToUpload: any) {
+    uploadNewsImage(fileToUpload: any): Observable<Response>  {
         let input = new FormData();
         input.append('file', fileToUpload);
 
