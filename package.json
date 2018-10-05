@@ -2,6 +2,13 @@
   "name": "penoc-sdk",
   "version": "0.1.0",
   "dependencies": {
+    "@angular/core": "^4.2.4",
+    "@angular/http": "^4.2.4",
+    "rxjs": "^5.4.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@angular/cli": "6.2.4",
+    "@angular/compiler-cli": "^4.2.4",
+    "@angular/language-service": "^4.2.4"
+  }
 }
