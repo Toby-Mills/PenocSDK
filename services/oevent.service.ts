@@ -30,8 +30,19 @@ export class OEventService {
         return  this.apiService.post('/OEvents/', JSON.stringify(oevent));
     }
 
-    getOEventResultSummary(oeventId: Number): Observable<Response>{
+    getOEventResultSummary(oeventId: Number, maximumResults?: Number): Observable<Response>{
         let url = '/OEvents/' + oeventId + '/resultSummary';
+        if (maximumResults != null) {url += '&maximumResults=' + maximumResults; }
+       return this.apiService.get(url);
+    }
+
+    getOEventResultSummaries(name?: String, venue?: String, dateFrom?: Date, dateTo?: Date, maximumResults?: Number): Observable<Response>{
+        let url = '/resultSummaries';
+        if (name != null) {url += '&name=' + name; }
+        if (venue != null) {url += '&venue=' + venue; }
+        if (dateFrom != null) {url += '&dateFrom=' + dateFrom.getFullYear() + '-' + (dateFrom.getMonth() + 1) + '-' + dateFrom.getDate(); }
+        if (dateTo != null) {url += '&dateTo=' + dateTo.getFullYear() + '-' + (dateTo.getMonth() + 1) + '-' + dateTo.getDate(); }
+        if (maximumResults != null) {url += '&maximumResults=' + maximumResults; }
        return this.apiService.get(url);
     }
 }
