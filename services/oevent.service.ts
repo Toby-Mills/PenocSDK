@@ -31,7 +31,7 @@ export class OEventService {
     }
 
     getOEventResultSummary(oeventId: Number, maximumResults?: Number): Observable<Response>{
-        let url = '/OEvents/' + oeventId + '/resultSummary';
+        let url = '/resultSummaries/' + oeventId;
         if (maximumResults != null) {url += '?maximumResults=' + maximumResults; }
        return this.apiService.get(url);
     }
