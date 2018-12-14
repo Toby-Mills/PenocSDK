@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ModuleWithProviders } from '@angular/core';
 import { Http, Headers, RequestOptionsArgs, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,10 +9,17 @@ export class ApiService {
     public authenticated = false;
 //comment test
     public constructor(public http: Http) {
-        if (location.host.toLowerCase().startsWith('localhost')) {
-            this.apiUrl = 'http://localhost/penoc/api';
-        } else {
-            this.apiUrl = 'http://www.penoc.org.za/api';
+        // if (location.host.toLowerCase().startsWith('localhost')) {
+        //     this.apiUrl = 'http://localhost/penoc/api';
+        // } else {
+        //     this.apiUrl = 'http://www.penoc.org.za/api';
+        // }
+    }
+
+    static configure(env): ModuleWithProviders {
+        return {
+            ngModule: ApiService,
+            providers: [{ provide: 'env', useValue: env }]
         }
     }
 
