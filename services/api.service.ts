@@ -16,13 +16,6 @@ export class ApiService {
         // }
     }
 
-    static configure(env): ModuleWithProviders {
-        return {
-            ngModule: ApiService,
-            providers: [{ provide: 'env', useValue: env }]
-        }
-    }
-
     public appendApiHeaders(options?: RequestOptionsArgs): RequestOptionsArgs {
         options = options || {};
         options.headers = options.headers || new Headers();

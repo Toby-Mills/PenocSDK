@@ -17,7 +17,7 @@ import { UploadService } from './services/upload.service';
   exports: [ ]
 })
 export class PenocSdkModule {
-     static forRoot(): ModuleWithProviders {
+     static forRoot(env): ModuleWithProviders {
     return {
       ngModule: PenocSdkModule,
       providers: [ApiService,
@@ -27,7 +27,8 @@ export class PenocSdkModule {
         NewsService,
         OEventService,
         ResultService,
-        UploadService]
+        UploadService,
+        { provide: 'environment', useValue: env }] //allows the module to accept an environment variable to use internally
     };
   }
 }
