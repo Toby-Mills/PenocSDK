@@ -27,25 +27,25 @@ export class ApiService {
     }
 
     public get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        url = this.env.apiUrl + url;
+        url = this.env.apiURL + url;
         options = this.appendApiHeaders(options);
         return this.http.get(url, options);
     }
 
     public post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        url = this.env.apiUrl + url;
+        url = this.env.apiURL + url;
         options = this.appendApiHeaders(options);
         return this.http.post(url, body, options);
     }
 
     public put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        url = this.env.apiUrl + url;
+        url = this.env.apiURL + url;
         options = this.appendApiHeaders(options);
         return this.http.put(url, body, options);
     }
 
     public delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        url = this.env.apiUrl + url;
+        url = this.env.apiURL + url;
         options = this.appendApiHeaders(options);
         return this.http.delete(url, options);
     }
