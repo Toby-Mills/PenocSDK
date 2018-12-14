@@ -1,4 +1,4 @@
-import { Injectable, ModuleWithProviders } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, RequestOptionsArgs, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -8,7 +8,7 @@ export class ApiService {
     private token: any;
     public authenticated = false;
 //comment test
-    public constructor(public http: Http) {
+    public constructor(@Inject('environment') public env, public http: Http) {
         // if (location.host.toLowerCase().startsWith('localhost')) {
         //     this.apiUrl = 'http://localhost/penoc/api';
         // } else {
@@ -27,25 +27,25 @@ export class ApiService {
     }
 
     public get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        url = this.apiUrl + url;
+        url = this.env.apiUrl + url;
         options = this.appendApiHeaders(options);
         return this.http.get(url, options);
     }
 
     public post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        url = this.apiUrl + url;
+        url = this.env.apiUrl + url;
         options = this.appendApiHeaders(options);
         return this.http.post(url, body, options);
     }
 
     public put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-        url = this.apiUrl + url;
+        url = this.env.apiUrl + url;
         options = this.appendApiHeaders(options);
         return this.http.put(url, body, options);
     }
 
     public delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        url = this.apiUrl + url;
+        url = this.env.apiUrl + url;
         options = this.appendApiHeaders(options);
         return this.http.delete(url, options);
     }
