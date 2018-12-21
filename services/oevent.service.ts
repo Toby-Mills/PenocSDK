@@ -37,7 +37,7 @@ export class OEventService {
     }
 
     getOEventResultSummaries(name?: String, venue?: String, dateFrom?: Date, dateTo?: Date, maximumResults?: Number): Observable<Response>{
-        let url = '/resultSummaries';
+        let url = '/resultSummaries/?';
         if (name != null) {url += '&name=' + name; }
         if (venue != null) {url += '&venue=' + venue; }
         if (dateFrom != null) {url += '&dateFrom=' + dateFrom.getFullYear() + '-' + (dateFrom.getMonth() + 1) + '-' + dateFrom.getDate(); }
